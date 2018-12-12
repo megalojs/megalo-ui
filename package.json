@@ -1,7 +1,7 @@
 {
   "name": "megalo-ui",
   "version": "0.0.1",
-  "description": "",
+  "description": "UI KIT for Megalo",
   "main": "index.js",
   "scripts": {
     "build:wechat": "webpack --config ./build/webpack.config.wechat.js",
