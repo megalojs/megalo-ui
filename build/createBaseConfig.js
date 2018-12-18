@@ -5,6 +5,8 @@ const VueLoaderPlugin = require( 'vue-loader/lib/plugin' )
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { pagesEntry, getSubPackagesRoot } = require('@megalo/entry')
 const _ = require( './util' );
+const webpack = require('webpack');
+const path = require('path');
 const appMainFile = _.resolve('src/index.js')
 const CSS_EXT = {
   wechat: 'wxss',
@@ -109,7 +111,14 @@ function createBaseConfig( platform = 'wechat' ) {
           use: [
             MiniCssExtractPlugin.loader,
             'css-loader',
-            'sass-loader',
+            {
+              loader: 'px2rpx-loader',
+              options: {
+                rpxUnit: 1,
+                rpxPrecision: 6
+              }
+            },
+            'sass-loader'
           ]
         }
       ]
@@ -124,7 +133,10 @@ function createBaseConfig( platform = 'wechat' ) {
         context: `src/native/${platform}/`,
         from: `**/*`,
         to: _.resolve( `dist-${platform}/native` )
-      } ], {} )
+      } ], {} ),
+      new webpack.ProvidePlugin({
+        'Megalo': [path.resolve(`./node_modules/@megalo/api/platforms/${platform}`), 'default']
+      })
     ]
   }
 }

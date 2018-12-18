@@ -1,0 +1,1 @@
+export { ENV_TYPE, getEnv, isWEAPP, isALIPAY, isSWAN, isTT, isWEB} from './env';

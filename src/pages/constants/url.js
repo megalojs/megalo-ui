@@ -1,0 +1,2 @@
+export const iconView = 'https://haitao.nos.netease.com/dd0f570c-1e6c-4ac2-802f-858c5afa3ba6_96_96.png';
+export const logoImg = 'https://haitao.nos.netease.com/12cba625-029b-4627-96d4-55fcc5711f09_512_443.png';

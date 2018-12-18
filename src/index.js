@@ -14,6 +14,9 @@ export default {
       navigationBarTextStyle: 'black'
     },
     pages: [
+      'pages/index/index',
+      'pages/panel/index',
+      'pages/view/avatar/index',
       'pages/view/swiper/index'
     ]
   }
