@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import mgSwiper from '../../../components/mg-swiper'
+import mgSwiper from '../../../components/swiper'
 export default {
   data() {
     return {

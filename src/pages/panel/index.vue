@@ -38,10 +38,12 @@ const list = {
   view: [{
     id: 'Avatar',
     name: '头像'
-  }, {
-    id: 'Article',
-    name: '文章'
-  }, {
+  }, 
+  // {
+  //   id: 'Article',
+  //   name: '文章'
+  // }, 
+  {
     id: 'Badge',
     name: '徽标'
   }, {
@@ -76,12 +78,8 @@ const list = {
 export default {
   computed: {
     currentId() {
-      if(getCurrentPages) {
-        const pages = getCurrentPages();
-        const currentPage = pages[pages.length - 1];
-        return currentPage.options.id.toLowerCase();
-      }
-      return '';
+      const id = this.$mp.options.id || '';
+      return id.toLowerCase();
     },
     title() {
       const { currentId } = this;

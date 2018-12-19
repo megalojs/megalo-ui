@@ -17,6 +17,8 @@ export default {
       'pages/index/index',
       'pages/panel/index',
       'pages/view/avatar/index',
+      'pages/view/badge/index',
+      'pages/view/countdown/index',
       'pages/view/swiper/index'
     ]
   }

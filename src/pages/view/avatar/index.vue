@@ -93,7 +93,7 @@
 
 <script>
 import docHeader from '../../components/doc-header';
-import mgAvatar from '../../../components/mg-avatar';
+import mgAvatar from '../../../components/avatar';
 import { isWEAPP } from '../../../util';
 
 export default {

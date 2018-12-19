@@ -1,5 +1,5 @@
 <template>
-  <div :class="className">
+  <div :class="resClassName" :style="customStyle">
     <template v-if="openData && openData.type === 'userAvatarUrl' && isWEAPP">
       <open-data :type="openData.type"></open-data>
     </template>
@@ -12,6 +12,8 @@
 
 <script> 
 import { isWEAPP } from '../../util'; 
+import { mixin } from '../../mixins';
+
 const SIZE_CLASS = {
   large: 'large',
   normal: 'normal',
@@ -19,6 +21,7 @@ const SIZE_CLASS = {
 }
 
 export default {
+  mixins: [mixin],
   props: {
     openData: Object,
     image: String,
@@ -38,8 +41,8 @@ export default {
     }
   },
   computed: {
-    className: function() {
-      return 'at-avatar at-avatar--' + SIZE_CLASS[this.size] + (this.circle ? ' at-avatar--circle' : '');
+    resClassName: function() {
+      return `${this.rootClassName}at-avatar at-avatar--${SIZE_CLASS[this.size] + (this.circle ? ' at-avatar--circle' : '')}`;
     },
     letter: function() {
       return this.text ? this.text[0] : '';
