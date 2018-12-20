@@ -115,7 +115,7 @@ export default {
             minutes = 0,
             seconds = 0;
         
-        if(this.seconds > 0) {
+        if(this.totalSeconds > 0) {
           day = Math.floor(this.totalSeconds / 86400);
           hours = Math.floor(this.totalSeconds / 3600) - day * 24;
           minutes = Math.floor(this.totalSeconds / 60) - day * 24 * 60 - hours * 60;

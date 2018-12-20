@@ -53,7 +53,7 @@ export default {
     docHeader
   },
   methods: {
-    onTimeup() {
+    onTimeUp() {
       Megalo.showToast({
         title: '时间到',
         icon: 'success',
