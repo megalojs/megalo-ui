@@ -1,7 +1,7 @@
-import Countdown from './index.vue'
+import Index from './index.vue'
 import Vue from 'vue'
 
-const app = new Vue( Countdown )
+const app = new Vue( Index )
 
 app.$mount()
 

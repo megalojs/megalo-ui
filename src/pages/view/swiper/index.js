@@ -1,7 +1,7 @@
-import Swiper from './index.vue'
+import Index from './index.vue'
 import Vue from 'vue'
 
-const app = new Vue( Swiper )
+const app = new Vue( Index )
 
 app.$mount()
 

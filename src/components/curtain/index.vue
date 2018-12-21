@@ -29,7 +29,7 @@ export default {
   },
   computed: {
     resClassName() {
-      return `${this.className}at-curtain${!this.isOpened ? ' at-curtain--closed' : ''}`
+      return `at-curtain${!this.isOpened ? ' at-curtain--closed' : ''}${this.rootClassName}`
     },
     closeBox() {
       return `at-curtain__close-box${this.closeBtnPosition === 'top' ? ' at-curtain__close-box--top' : ''}`

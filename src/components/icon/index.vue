@@ -20,8 +20,8 @@ export default {
   },
   computed: {
     resClassName() {
-      const { className, prefixClass, value } = this;
-      return `${className}at-icon ${prefixClass}-${value}`;
+      const { rootClassName, prefixClass, value } = this;
+      return `at-icon ${prefixClass}-${value}${rootClassName}`;
     },
     resCustomStyle() {
       const { customStyle, size, color } = this;

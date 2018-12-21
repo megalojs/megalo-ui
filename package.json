@@ -47,7 +47,7 @@
     "webpack-dev-server": "^3.1.5"
   },
   "dependencies": {
-    "@megalo/api": "^0.2.1",
+    "@megalo/api": "^0.2.2",
     "@megalo/entry": "^0.1.0",
     "@megalo/vhtml-plugin": "^0.1.1",
     "megalo": "^0.6.0",

@@ -13,8 +13,8 @@ export const mixin = {
   computed: {
     rootClassName() {
       const space = this.className.length ? ' ' : '';
-      if(Array.isArray(this.className)) return this.className.join(' ') + space;
-      return this.className.trim() + space;
+      if(Array.isArray(this.className)) return space + this.className.join(' ');
+      return space + this.className.trim();
     }
   }
 }

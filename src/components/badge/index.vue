@@ -28,14 +28,9 @@ export default {
       default: 99
     }
   },
-  data() {
-    return {
-
-    }
-  },
   computed: {
     resClassName() {
-      return `${this.rootClassName}at-badge`;
+      return `at-badge${this.rootClassName}`;
     },
     val() {
       const { value, maxValue } = this;

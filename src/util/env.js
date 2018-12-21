@@ -32,3 +32,5 @@ export const isALIPAY = currentEnv === ENV_TYPE.ALIPAY
 export const isSWAN = currentEnv === ENV_TYPE.SWAN
 export const isWEB = currentEnv === ENV_TYPE.WEB
 export const isTT = currentEnv === ENV_TYPE.TT
+
+export const isMINIAPP = (isWEAPP || isALIPAY || isSWAN || isTT)

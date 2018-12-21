@@ -78,7 +78,7 @@ export default {
   },
   computed: {
     resClassName() {
-      return `${this.className}at-count-down${this.isCard ? ' at-count-down--card' : ''}`;
+      return `at-count-down${this.isCard ? ' at-count-down--card' : ''}${this.rootClassName}`;
     },
     resDay() {
       return this.formatNum(this.day);

@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     resClassName: function() {
-      return `${this.rootClassName}at-avatar at-avatar--${SIZE_CLASS[this.size] + (this.circle ? ' at-avatar--circle' : '')}`;
+      return `at-avatar at-avatar--${SIZE_CLASS[this.size] + (this.circle ? ' at-avatar--circle' : '') + this.rootClassName}`;
     },
     letter: function() {
       return this.text ? this.text[0] : '';

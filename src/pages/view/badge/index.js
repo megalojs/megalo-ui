@@ -1,7 +1,7 @@
-import Badge from './index.vue'
+import Index from './index.vue'
 import Vue from 'vue'
 
-const app = new Vue( Badge )
+const app = new Vue( Index )
 
 app.$mount()
 
