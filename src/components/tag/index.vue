@@ -46,7 +46,7 @@ export default {
   computed: {
     resClassName() {
       const { size, type, disabled, active, circle, rootClassName } = this;
-      return `at-tag at-tag--${SIZE_CLASS[size]}${type ? ' at-tag--' + type : ''}${disabled ? ' at-tag--disabled' : ''}${active ? ' at-tag--active' : ''}${circle ? ' at-tag--circle' : ''}${rootClassName}`;
+      return `mg-tag mg-tag--${SIZE_CLASS[size]}${type ? ' mg-tag--' + type : ''}${disabled ? ' mg-tag--disabled' : ''}${active ? ' mg-tag--active' : ''}${circle ? ' mg-tag--circle' : ''}${rootClassName}`;
     }
   },
   methods: {
@@ -64,7 +64,7 @@ export default {
 @import '../../style/theme/default.scss';
 @import '../../style/mixins/index.scss';
 
-.at-tag {
+.mg-tag {
   display: inline-block;
   padding: 0 $spacing-h-xl;
   height: 60px;
@@ -83,7 +83,7 @@ export default {
     border: 1PX solid $color-brand-light;
     background-color: $color-bg;
 
-    &.at-tag--primary {
+    &.mg-tag--primary {
       color: $color-text-base-inverse;
       border: 1PX solid $color-brand-light;
       background-color: $color-brand-light;

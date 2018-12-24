@@ -2,10 +2,10 @@
   <div :class="resClassName" :style="customStyle">
     <slot></slot>
       <template v-if="dot">
-        <div class="at-badge__dot"></div>
+        <div class="mg-badge__dot"></div>
       </template>
       <template v-else-if="val !== ''">
-          <div class="at-badge__num">{{val}}</div>
+          <div class="mg-badge__num">{{val}}</div>
       </template>
   </div>
 </template>
@@ -30,7 +30,7 @@ export default {
   },
   computed: {
     resClassName() {
-      return `at-badge${this.rootClassName}`;
+      return `mg-badge${this.rootClassName}`;
     },
     val() {
       const { value, maxValue } = this;
@@ -55,7 +55,7 @@ $badge-height: 28px;
 $badge-border-radius: 14px;
 $badge-dot-size: 20px;
 
-.at-badge {
+.mg-badge {
   position: relative;
   display: inline-block;
   font-size: 0;

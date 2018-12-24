@@ -80,7 +80,7 @@
           'icon': {
             value: 'sound',
             activeColor: '#fff',
-            inactiveColor: '#78A4FA',
+            inactiveColor: '#00c97f',
             size: '14'
           }
         }, {
@@ -89,7 +89,7 @@
           'icon': {
             value: 'shopping-cart',
             activeColor: '#fff',
-            inactiveColor: '#78A4FA',
+            inactiveColor: '#00c97f',
             size: '14'
           }
         }, {
@@ -98,7 +98,7 @@
           'icon': {
             value: 'camera',
             activeColor: '#fff',
-            inactiveColor: '#78A4FA',
+            inactiveColor: '#00c97f',
             size: '14'
           }
         }],

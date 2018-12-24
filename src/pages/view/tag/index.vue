@@ -122,7 +122,7 @@
 
 <script>
   import docHeader from '../../components/doc-header';
-  import { isMINIAPP, isWEB, isWEAPP } from '../../../util';
+  import { isMINIAPP, isWEB } from '../../../util';
   import mgTag from '../../../components/tag';
 
   export default {
@@ -170,7 +170,7 @@
         tagList[findIndex].active = active;
         const content = `\u60A8\u70B9\u51FB\u7684 tag \u6807\u7B7E\u540D\u662F\uFF1A${data.name}\uFF0C\u70B9\u51FB\u524D\u662F\u5426\u9009\u4E2D\uFF1A${data.active}\uFF0C\u70B9\u51FB\u540E\uFF1A${active}`;
         this.tagList = tagList;
-        if(isWEAPP) {
+        if(isMINIAPP) {
           Megalo.showModal({ content, showCancel:false });
         } else if(isWEB) {
           alert(content);

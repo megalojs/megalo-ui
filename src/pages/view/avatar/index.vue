@@ -68,7 +68,7 @@
       </div>
       <template v-if="isWEAPP">
         <div class="panel">
-          <div class="panel__title">openData 头像（仅小程序支持）</div>
+          <div class="panel__title">openData 头像（仅微信小程序支持）</div>
           <div class="panel__content">
             <div class="example-item">
               <div class="subitem">

@@ -1,7 +1,7 @@
 <template>
   <div :class="resClassName" :style="customStyle">
-    <div class="at-curtain__container">
-      <div class="at-curtain__body">
+    <div class="mg-curtain__container">
+      <div class="mg-curtain__body">
         <slot></slot>
         <div :class="closeBox" @click="onClose">
           <mg-icon value="close-circle" color="#fff" size="30"></mg-icon>
@@ -29,10 +29,10 @@ export default {
   },
   computed: {
     resClassName() {
-      return `at-curtain${!this.isOpened ? ' at-curtain--closed' : ''}${this.rootClassName}`
+      return `mg-curtain${!this.isOpened ? ' mg-curtain--closed' : ''}${this.rootClassName}`
     },
     closeBox() {
-      return `at-curtain__close-box${this.closeBtnPosition === 'top' ? ' at-curtain__close-box--top' : ''}`
+      return `mg-curtain__close-box${this.closeBtnPosition === 'top' ? ' mg-curtain__close-box--top' : ''}`
     }
   },
   components: {
@@ -52,7 +52,7 @@ export default {
 
 $spacing-v: 50PX;
 
-.at-curtain {
+.mg-curtain {
   display: block;
   position: fixed;
   top: 0;
@@ -101,7 +101,7 @@ $spacing-v: 50PX;
   &--closed {
     visibility: hidden;
 
-    .at-curtain__container {
+    .mg-curtain__container {
       opacity: 0;
     }
   }

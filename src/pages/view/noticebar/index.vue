@@ -88,7 +88,7 @@
 <script>
 import docHeader from '../../components/doc-header';
 import mgNoticebar from '../../../components/noticebar';
-import { isWEAPP, isWEB } from '../../../util';   
+import { isMINIAPP, isWEB } from '../../../util';   
 export default {
   components: {
     docHeader,
@@ -96,7 +96,7 @@ export default {
   },
   methods: {
     onGotoMore() {
-      if(isWEAPP) {
+      if(isMINIAPP) {
         Megalo.showModal({ content: '点击了更多！' })
       } else if(isWEB) {
         alert('点击了更多！');

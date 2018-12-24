@@ -1,15 +1,15 @@
 <template>
   <div :class="resClassName" :style="customStyle">
     <div :class="item.itemRootClassName" :key="index" v-for="(item, index) in resItems">
-      <div class="at-timelineitem__tail"></div>
+      <div class="mg-timelineitem__tail"></div>
       <div :class="item.dotClass">
         <template v-if="item.icon">
           <mg-icon :value="item.icon" size="16"></mg-icon>
         </template>
       </div>
-      <div class="at-timelineitem__content">
-        <div class="at-timelineitem__content-item">{{item.title}}</div>
-        <div class="at-timelineitem__content-item at-timelineitem__content--sub" :key="subIndex" v-for="(sub, subIndex) in item.content">{{sub}}</div>
+      <div class="mg-timelineitem__content">
+        <div class="mg-timelineitem__content-item">{{item.title}}</div>
+        <div class="mg-timelineitem__content-item mg-timelineitem__content--sub" :key="subIndex" v-for="(sub, subIndex) in item.content">{{sub}}</div>
       </div>
     </div>
   </div>
@@ -33,7 +33,7 @@
     computed: {
       resClassName() {
         const { pending, rootClassName } = this;
-        return `at-timeline${pending ? ' at-timeline--pending' : ''}${rootClassName}`;
+        return `mg-timeline${pending ? ' mg-timeline--pending' : ''}${rootClassName}`;
       },
       resItems() {
         const { items } = this;
@@ -41,8 +41,8 @@
           const { color, icon, title, content } = item;
           item.title = title === undefined ? '' : title;
           item.content = content === undefined ? [] : content;
-          item.itemRootClassName = `at-timelineitem${color ? ' at-timelineitem--' + color : ''}`;
-          item.dotClass = `at-timelineitem__dot${icon ? ' at-timelineitem__icon' : ''}`;
+          item.itemRootClassName = `mg-timelineitem${color ? ' mg-timelineitem--' + color : ''}`;
+          item.dotClass = `mg-timelineitem__dot${icon ? ' mg-timelineitem__icon' : ''}`;
           return item;
         })
       }
@@ -59,7 +59,7 @@
   $timeline-margin-left: 40px;
   $timeline-dot-size: 24px;
 
-  .at-timelineitem {
+  .mg-timelineitem {
     position: relative;
     padding: 0 0 $spacing-v-sm;
 
@@ -107,7 +107,7 @@
         border-color: $color-info;
       }
 
-      &.at-timelineitem__icon {
+      &.mg-timelineitem__icon {
         &::after {
           display: none;
         }
@@ -120,11 +120,11 @@
     }
 
     &--blue {
-      .at-timelineitem__icon {
+      .mg-timelineitem__icon {
         color: $color-blue;
       }
 
-      .at-timelineitem__dot {
+      .mg-timelineitem__dot {
         &::after {
           border-color: $color-blue;
         }
@@ -132,11 +132,11 @@
     }
 
     &--red {
-      .at-timelineitem__icon {
+      .mg-timelineitem__icon {
         color: $color-error;
       }
 
-      .at-timelineitem__dot {
+      .mg-timelineitem__dot {
         &::after {
           border-color: $color-error;
         }
@@ -144,11 +144,11 @@
     }
 
     &--yellow {
-      .at-timelineitem__icon {
+      .mg-timelineitem__icon {
         color: $color-warning;
       }
 
-      .at-timelineitem__dot {
+      .mg-timelineitem__dot {
         &::after {
           border-color: $color-warning;
         }
@@ -164,20 +164,20 @@
     }
   }
 
-  .at-timeline {
-    .at-timelineitem:last-child {
-      .at-timelineitem__tail {
+  .mg-timeline {
+    .mg-timelineitem:last-child {
+      .mg-timelineitem__tail {
         display: none;
       }
     }
 
     &--pending {
-      .at-timelineitem:nth-last-child(2) {
-        .at-timelineitem__content {
+      .mg-timelineitem:nth-last-child(2) {
+        .mg-timelineitem__content {
           min-height: 80px;
         }
 
-        .at-timelineitem__tail {
+        .mg-timelineitem__tail {
           border-left-style: dotted;
         }
       }

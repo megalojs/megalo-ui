@@ -1,30 +1,30 @@
 <template>
   <div :class="resClassName" :style="customStyle">
     <template v-if="isShowDay">
-      <div class="at-count-down__item">
-        <div class="at-count-down__time-box">
-          <text class="at-count-down__time">{{resDay}}</text>
+      <div class="mg-count-down__item">
+        <div class="mg-count-down__time-box">
+          <text class="mg-count-down__time">{{resDay}}</text>
         </div>
-        <text class="at-count-down__separator">{{format.day}}</text>
+        <text class="mg-count-down__separator">{{format.day}}</text>
       </div>
     </template>
-    <div class="at-count-down__item">
-      <div class="at-count-down__time-box">
-        <text class="at-count-down__time">{{resHours}}</text>
+    <div class="mg-count-down__item">
+      <div class="mg-count-down__time-box">
+        <text class="mg-count-down__time">{{resHours}}</text>
       </div>
-      <text class="at-count-down__separator">{{format.hours}}</text>
+      <text class="mg-count-down__separator">{{format.hours}}</text>
     </div>
-    <div class="at-count-down__item">
-      <div class="at-count-down__time-box">
-        <text class="at-count-down__time">{{resMinutes}}</text>
+    <div class="mg-count-down__item">
+      <div class="mg-count-down__time-box">
+        <text class="mg-count-down__time">{{resMinutes}}</text>
       </div>
-      <text class="at-count-down__separator">{{format.minutes}}</text>
+      <text class="mg-count-down__separator">{{format.minutes}}</text>
     </div>
-    <div class="at-count-down__item">
-      <div class="at-count-down__time-box">
-        <text class="at-count-down__time">{{resSeconds}}</text>
+    <div class="mg-count-down__item">
+      <div class="mg-count-down__time-box">
+        <text class="mg-count-down__time">{{resSeconds}}</text>
       </div>
-      <text class="at-count-down__separator">{{format.seconds}}</text>
+      <text class="mg-count-down__separator">{{format.seconds}}</text>
     </div>
   </div>
 </template>
@@ -78,7 +78,7 @@ export default {
   },
   computed: {
     resClassName() {
-      return `at-count-down${this.isCard ? ' at-count-down--card' : ''}${this.rootClassName}`;
+      return `mg-count-down${this.isCard ? ' mg-count-down--card' : ''}${this.rootClassName}`;
     },
     resDay() {
       return this.formatNum(this.day);
@@ -154,7 +154,7 @@ export default {
 
 $font-size: $font-size-lg;
 
-.at-count-down {
+.mg-count-down {
   display: inline-block;
   min-height: $font-size;
 
@@ -191,7 +191,7 @@ $font-size: $font-size-lg;
   }
 
   &--card {
-    .at-count-down__time-box {
+    .mg-count-down__time-box {
       padding: $spacing-v-xs 0;
       border: 1px solid $color-border-grey;
       border-radius: $border-radius-md;
@@ -200,7 +200,7 @@ $font-size: $font-size-lg;
       background-color: #fff;
       position: relative;
 
-      .at-count-down__time {
+      .mg-count-down__time {
         position: relative;
         z-index: $zindex-divider + 1;
       }

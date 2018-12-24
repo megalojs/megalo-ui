@@ -1,12 +1,12 @@
 <template>
   <div :class="resClassName" :style="resCustomStyle">
-    <div class="at-divider__content" :style="fontStyle">
+    <div class="mg-divider__content" :style="fontStyle">
         <template v-if="content === ''">
           <slot></slot>
         </template>
         <template v-else>{{content}}</template>
     </div>
-    <div class="at-divider__line" :style="lineStyle"></div>
+    <div class="mg-divider__line" :style="lineStyle"></div>
   </div>
 </template>
 
@@ -39,7 +39,7 @@ export default {
   },
   computed: {
     resClassName() {
-      return `at-divider${this.rootClassName}`
+      return `mg-divider${this.rootClassName}`
     },
     resCustomStyle() {
       const { customStyle, height } = this;
@@ -65,7 +65,7 @@ export default {
 @import '../../style/theme/default.scss';
 @import "../../style/mixins/index.scss";
 
-.at-divider {
+.mg-divider {
   width: 100%;
   height: 112px;
   text-align: center;

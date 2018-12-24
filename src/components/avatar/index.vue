@@ -4,9 +4,9 @@
       <open-data :type="openData.type"></open-data>
     </template>
     <template v-else-if="image">
-      <img class="at-avatar__img" :src="image" />
+      <img class="mg-avatar__img" :src="image" />
     </template>
-    <text v-else class="at-avatar__text">{{letter}}</text>
+    <text v-else class="mg-avatar__text">{{letter}}</text>
   </div>
 </template>
 
@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     resClassName: function() {
-      return `at-avatar at-avatar--${SIZE_CLASS[this.size] + (this.circle ? ' at-avatar--circle' : '') + this.rootClassName}`;
+      return `mg-avatar mg-avatar--${SIZE_CLASS[this.size] + (this.circle ? ' mg-avatar--circle' : '') + this.rootClassName}`;
     },
     letter: function() {
       return this.text ? this.text[0] : '';
@@ -58,7 +58,7 @@ $avatar-size-sm: 80px;
 $avatar-size-md: 100px;
 $avatar-size-lg: 120px;
 
-.at-avatar {
+.mg-avatar {
   width: $avatar-size-md;
   height: $avatar-size-md;
   color: #fff;

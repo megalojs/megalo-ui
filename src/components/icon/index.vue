@@ -9,7 +9,7 @@ export default {
   props: {
     prefixClass: {
       type: String,
-      default: 'at-icon'
+      default: 'mg-icon'
     },
     value: String,
     color: String,
@@ -21,7 +21,7 @@ export default {
   computed: {
     resClassName() {
       const { rootClassName, prefixClass, value } = this;
-      return `at-icon ${prefixClass}-${value}${rootClassName}`;
+      return `mg-icon ${prefixClass}-${value}${rootClassName}`;
     },
     resCustomStyle() {
       const { customStyle, size, color } = this;

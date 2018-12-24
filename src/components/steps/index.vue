@@ -1,31 +1,31 @@
 <template>
   <div :class="resClassName" :style="customStyle">
     <div :key="item.title" :class="item.itemStyle" @click="handleClick(i)" v-for="(item, i) in resItems">
-      <div class="at-steps__circular-wrap">
+      <div class="mg-steps__circular-wrap">
         <template v-if="i !== 0">
-          <div class="at-steps__left-line"></div>
+          <div class="mg-steps__left-line"></div>
         </template>
         <template v-if="item.success || item.error">
-          <mg-icon :value="item.success ? 'check-circle' : 'close-circle'" :color="item.success ? '#6190E8' : '#FF4949'"
+          <mg-icon :value="item.success ? 'check-circle' : 'close-circle'" :color="item.success ? '#00c97f' : '#FF4949'"
             size="28"></mg-icon>
         </template>
         <template v-else>
-          <div class="at-steps__circular">
+          <div class="mg-steps__circular">
             <template v-if="item.icon">
               <mg-icon :value="item.icon.value" :color="i === current ? item.icon.activeColor : item.icon.inactiveColor"
                 :size="item.icon.size"></mg-icon>
             </template>
             <template v-else>
-              <text class="at-steps__num">{{i + 1}}</text>
+              <text class="mg-steps__num">{{i + 1}}</text>
             </template>
           </div>
         </template>
         <template v-if="i !== items.length - 1">
-          <div class="at-steps__right-line"></div>
+          <div class="mg-steps__right-line"></div>
         </template>
       </div>
-      <div class="at-steps__title">{{item.title}}</div>
-      <div class="at-steps__desc">{{item.desc}}</div>
+      <div class="mg-steps__title">{{item.title}}</div>
+      <div class="mg-steps__desc">{{item.desc}}</div>
     </div>
   </div>
 </template>
@@ -47,12 +47,12 @@
     },
     computed: {
       resClassName() {
-        return `at-steps${this.rootClassName}`;
+        return `mg-steps${this.rootClassName}`;
       },
       resItems() {
         const { current, items } = this; 
         return items.map((item, i) => {
-          item.itemStyle = `at-steps__item${i === current ? ' at-steps__item--active' : ' at-steps__item--inactive'}`;
+          item.itemStyle = `mg-steps__item${i === current ? ' mg-steps__item--active' : ' mg-steps__item--inactive'}`;
           return item;
         });
       }
@@ -74,7 +74,7 @@
 
 $circularH: 28PX;
 
-.at-steps {
+.mg-steps {
   display: flex;
   width: 100%;
   align-items: flex-start;
@@ -102,14 +102,14 @@ $circularH: 28PX;
     text-align: center;
 
     &--active {
-      .at-steps__circular {
+      .mg-steps__circular {
         color: $color-white;
         background-color: $color-brand;
       }
     }
 
     &--inactive {
-      .at-steps__circular {
+      .mg-steps__circular {
         color: $color-grey-2;
         background-color: $color-grey-4;
       }

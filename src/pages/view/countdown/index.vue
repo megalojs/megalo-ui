@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <docs-header title="CountDown 倒计时" ></docs-header>
+    <doc-header title="CountDown 倒计时" ></doc-header>
     <div class="doc-body">
       <div class="panel">
         <div class="panel__title">一般用法</div>
