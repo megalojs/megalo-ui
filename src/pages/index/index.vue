@@ -28,9 +28,6 @@
 <script>
 import { iconView, logoImg } from '../constants/url.js'; 
 export default {
-  created() {
-    console.log(Megalo)
-  },
   data() {
     return {
       list: [{
