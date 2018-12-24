@@ -22,6 +22,8 @@ export default {
       'pages/view/curtain/index',
       'pages/view/divider/index',
       'pages/view/noticebar/index',
+      'pages/view/tag/index',
+      'pages/view/timeline/index',
       'pages/view/swiper/index'
     ]
   }

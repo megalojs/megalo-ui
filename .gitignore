@@ -5,3 +5,4 @@ lock.json
 dist-alipay
 dist-swan
 dist-wechat
+.vscode
