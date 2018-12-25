@@ -7,7 +7,7 @@ const { pagesEntry, getSubPackagesRoot } = require('@megalo/entry')
 const _ = require( './util' );
 const webpack = require('webpack');
 const path = require('path');
-const appMainFile = _.resolve('src/index.js')
+const appMainFile = _.resolve('src/app.js')
 const CSS_EXT = {
   wechat: 'wxss',
   alipay: 'acss',

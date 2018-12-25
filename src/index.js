@@ -1,30 +1,9 @@
-import App from './App'
-import Vue from 'vue'
-
-const app = new Vue( App )
-
-app.$mount()
-
-export default {
-  config: {
-    window: {
-      backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'Megalo UI',
-      navigationBarTextStyle: 'black'
-    },
-    pages: [
-      'pages/index/index',
-      'pages/panel/index',
-      'pages/view/avatar/index',
-      'pages/view/badge/index',
-      'pages/view/countdown/index',
-      'pages/view/curtain/index',
-      'pages/view/divider/index',
-      'pages/view/noticebar/index',
-      'pages/view/tag/index',
-      'pages/view/timeline/index',
-      'pages/view/steps/index'
-    ]
-  }
-}
+export { default as mgAvatar } from './components/avatar';
+export { default as mgBadge } from './components/badge';
+export { default as mgCountdown } from './components/countdown';
+export { default as mgCurtain } from './components/curtain';
+export { default as mgDivider } from './components/divider';
+export { default as mgNoticebar } from './components/noticebar';
+export { default as mgSteps } from './components/steps';
+export { default as mgTag } from './components/tag';
+export { default as mgTimeline } from './components/timeline';
