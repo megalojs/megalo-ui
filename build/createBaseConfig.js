@@ -1,10 +1,13 @@
-const createMegaloTarget = require( '@megalo/target' )
-const compiler = require( '@megalo/template-compiler' )
-const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' )
-const VueLoaderPlugin = require( 'vue-loader/lib/plugin' )
+const createMegaloTarget = require('@megalo/target')
+const compiler = require('@megalo/template-compiler')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const { pagesEntry, getSubPackagesRoot } = require('@megalo/entry')
-const _ = require( './util' );
+const {
+  pagesEntry,
+  getSubPackagesRoot
+} = require('@megalo/entry')
+const _ = require('./util');
 const webpack = require('webpack');
 const path = require('path');
 const appMainFile = _.resolve('src/app.js')
@@ -14,20 +17,20 @@ const CSS_EXT = {
   swan: 'css',
 };
 
-function createBaseConfig( platform = 'wechat' ) {
+function createBaseConfig(platform = 'wechat') {
   const cssExt = CSS_EXT[platform]
 
   return {
     mode: 'development',
 
-    target: createMegaloTarget( {
-      compiler: Object.assign( compiler, { } ),
+    target: createMegaloTarget({
+      compiler: Object.assign(compiler, {}),
       platform,
       htmlParse: {
         templateName: 'octoParse',
         src: _.resolve(`./node_modules/octoparse/lib/platform/${platform}`)
       },
-    } ),
+    }),
 
     entry: {
       'app': appMainFile,
@@ -35,7 +38,7 @@ function createBaseConfig( platform = 'wechat' ) {
     },
 
     output: {
-      path: _.resolve( `dist-${platform}/` ),
+      path: _.resolve(`dist-${platform}/`),
       filename: 'static/js/[name].js',
       chunkFilename: 'static/js/[id].js'
     },
@@ -76,12 +79,10 @@ function createBaseConfig( platform = 'wechat' ) {
         // ... other rules
         {
           test: /\.vue$/,
-          use: [
-            {
-              loader: 'vue-loader',
-              options: {}
-            }
-          ]
+          use: [{
+            loader: 'vue-loader',
+            options: {}
+          }]
         },
 
         {
@@ -94,15 +95,6 @@ function createBaseConfig( platform = 'wechat' ) {
           use: [
             MiniCssExtractPlugin.loader,
             'css-loader'
-          ]
-        },
-
-        {
-          test: /\.less$/,
-          use: [
-            MiniCssExtractPlugin.loader,
-            'css-loader',
-            'less-loader',
           ]
         },
 
@@ -126,14 +118,14 @@ function createBaseConfig( platform = 'wechat' ) {
 
     plugins: [
       new VueLoaderPlugin(),
-      new MiniCssExtractPlugin( {
+      new MiniCssExtractPlugin({
         filename: `./static/css/[name].${cssExt}`,
-      } ),
-      new CopyWebpackPlugin( [ {
+      }),
+      new CopyWebpackPlugin([{
         context: `src/native/${platform}/`,
         from: `**/*`,
-        to: _.resolve( `dist-${platform}/native` )
-      } ], {} ),
+        to: _.resolve(`dist-${platform}/native`)
+      }], {}),
       new webpack.ProvidePlugin({
         'Megalo': [path.resolve(`./node_modules/@megalo/api/platforms/${platform}`), 'default']
       })

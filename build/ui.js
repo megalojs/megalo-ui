@@ -16,13 +16,12 @@ const DIR = {
   STYLE: 'style/**',
   MIXIN: 'mixins/**',
   UTIL: 'util/**',
-  ENTER: 'index.js'
+  // ENTER: 'index.js'
 }
 
 const appPath = process.cwd()
 const sourceDir = path.join(appPath, CONFIG.SOURCE_DIR)
 const outputDir = path.join(appPath, CONFIG.OUTPUT_DIR)
-const entryFilePath = path.join(sourceDir, 'index.js')
 
 function build() {
   const dirArr = Object.values(DIR).map(dir => path.join(sourceDir, dir))

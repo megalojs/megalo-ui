@@ -31,7 +31,8 @@
 <script>
   import {
     isMINIAPP,
-    isWEB
+    isWEB,
+    Megalo
   } from '../../util';
   import {
     mixin
