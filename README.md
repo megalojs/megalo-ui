@@ -18,7 +18,7 @@ npm install @megalo/ui
 
 ### 使用
 组件使用了scss以及px2rpx两个loader, 因此需要在配置文件中引用
-```json
+```javascript
 {
   test: /\.scss$/,
   use: [
@@ -36,7 +36,7 @@ npm install @megalo/ui
 ```
 
 配置路径alias(小程序中解析vue组件路径比较特殊，后续会做优化，优化后可直接在组件库根目录引用组件)
-```json
+```javascript
 alias: {
   'megalo-ui': '@megalo/ui/dist/components'
 }
