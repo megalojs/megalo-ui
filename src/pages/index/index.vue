@@ -1,7 +1,7 @@
 <template>
   <div class="page page-index">
     <div class="logo">
-      <image :src="logoImg" class="img" mode="widthFix" />
+      <img :src="logoImg" class="img" mode="widthFix" />
     </div>
     <div class="page-title">Megalo UI</div>
     <div class="module-list">

@@ -14,6 +14,7 @@
     "dev:wechat": "webpack --config ./build/webpack.config.wechat.js -w",
     "dev:alipay": "webpack --config ./build/webpack.config.alipay.js -w",
     "dev:swan": "webpack --config ./build/webpack.config.swan.js -w",
+    "dev:h5": "webpack-dev-server --inline --progress --config ./build/webpack.config.h5.js",
     "brk:wechat": "node --inspect-brk ./node_modules/webpack/bin/webpack.js --config ./build/webpack.config.wechat.js",
     "brk:alipay": "node --inspect-brk ./node_modules/webpack/bin/webpack.js --config ./build/webpack.config.alipay.js",
     "brk:swan": "node --inspect-brk ./node_modules/webpack/bin/webpack.js --config ./build/webpack.config.swan.js",
@@ -42,6 +43,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-0": "^6.24.1",
     "chalk": "^2.4.1",
+    "clean-webpack-plugin": "^2.0.1",
     "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^1.0.0",
     "fs-extra": "^7.0.1",
@@ -53,7 +55,9 @@
     "mini-css-extract-plugin": "^0.4.1",
     "octoparse": "^0.2.1",
     "rimraf": "^2.6.2",
+    "style-loader": "^0.23.1",
     "swiper": "^4.4.2",
+    "toposort": "^1.0.6",
     "vue": "2.5.17",
     "vue-loader": "15.4.0",
     "vue-style-loader": "^4.1.1",
@@ -65,8 +69,9 @@
   },
   "dependencies": {
     "@megalo/api": "^0.2.2",
+    "node-sass": "^4.11.0",
     "px2rpx-loader": "^0.1.10",
     "sass-loader": "^7.1.0",
-    "node-sass": "^4.11.0"
+    "vue-router": "^3.0.4"
   }
 }
