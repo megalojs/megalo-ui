@@ -4,7 +4,7 @@
       <div class="mg-curtain__body">
         <slot></slot>
         <div :class="closeBox" @click="onClose">
-          <mg-icon value="close-circle" color="#fff" size="30"></mg-icon>
+          <mg-icon value="close-circle" color="#fff" :size="30"></mg-icon>
         </div>
       </div>
     </div>

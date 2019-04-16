@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const _ = require('./util');
+const webpack = require('webpack');
 
 module.exports = {
   mode: 'development',
@@ -84,6 +85,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: _.resolve('./src/index.html'),
       chunksSortMode: 'none'
+    }),
+    new webpack.ProvidePlugin({
+      'Megalo': [path.resolve(`./node_modules/@megalo/api/platforms/web`), 'default']
     })
   ]
 }

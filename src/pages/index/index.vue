@@ -18,7 +18,7 @@
           <div class="content">{{item.content}}</div>
         </div>
         <div class="module-list__arrow">
-          <text class="mg-icon mg-icon-chevron-right"></text>
+          <span class="mg-icon mg-icon-chevron-right"></span>
         </div>
       </div>
     </div>

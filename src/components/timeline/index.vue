@@ -4,7 +4,7 @@
       <div class="mg-timelineitem__tail"></div>
       <div :class="item.dotClass">
         <template v-if="item.icon">
-          <mg-icon :value="item.icon" size="16"></mg-icon>
+          <mg-icon :value="item.icon" :size="16"></mg-icon>
         </template>
       </div>
       <div class="mg-timelineitem__content">

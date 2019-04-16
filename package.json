@@ -68,7 +68,7 @@
     "webpack-dev-server": "^3.1.5"
   },
   "dependencies": {
-    "@megalo/api": "^0.2.2",
+    "@megalo/api": "^0.5.1",
     "node-sass": "^4.11.0",
     "px2rpx-loader": "^0.1.10",
     "sass-loader": "^7.1.0",

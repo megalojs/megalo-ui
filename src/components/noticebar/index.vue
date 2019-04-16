@@ -19,7 +19,7 @@
     </div>
     <template v-if="resShowMore">
       <div class="mg-noticebar__more" @click="onGotoMore">
-        <text class="text">{{moreText}}</text>
+        <span class="text">{{moreText}}</span>
         <div class="mg-noticebar__more-icon">
           <mg-icon value="chevron-right" :size="16"></mg-icon>
         </div>
@@ -85,7 +85,8 @@
       return {
         show: true,
         animElemId,
-        dura: 15
+        dura: 15,
+        animationData: {}
       }
     },
     computed: {

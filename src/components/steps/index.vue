@@ -7,7 +7,7 @@
         </template>
         <template v-if="item.success || item.error">
           <mg-icon :value="item.success ? 'check-circle' : 'close-circle'" :color="item.success ? '#00c97f' : '#FF4949'"
-            size="28"></mg-icon>
+            :size="28"></mg-icon>
         </template>
         <template v-else>
           <div class="mg-steps__circular">
@@ -16,7 +16,7 @@
                 :size="item.icon.size"></mg-icon>
             </template>
             <template v-else>
-              <text class="mg-steps__num">{{i + 1}}</text>
+              <span class="mg-steps__num">{{i + 1}}</span>
             </template>
           </div>
         </template>

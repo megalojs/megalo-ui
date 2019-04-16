@@ -1,5 +1,5 @@
 <template>
-  <text :class="resClassName" :style="resCustomStyle" @click="handleClick"></text>
+  <span :class="resClassName" :style="resCustomStyle" @click="handleClick"></span>
 </template>
 
 <script>
@@ -14,7 +14,7 @@ export default {
     value: String,
     color: String,
     size: {
-      type: Number,
+      type: [Number, String],
       default: 24
     }
   },

@@ -1,25 +1,22 @@
 import config from '@/config.js';
 import { view } from './view';
 
-function genPath(page = '/') {
-  let arr = page.split('/');
-  let len = arr.length;
-  let str = arr[len - 2] || '';
-  return `/${str}`;
+function path(page) {
+  return '/' + page;
 }
 
-function genName(path) {
-  let arr = path.split('/');
-  return arr[1];
+function name(page) {
+  let arr = page.split('/');
+  let len = arr.length;
+  return arr[len - 2] || '';
 }
 
 const pages = config.pages || [];
 
 export const routes = pages.map((page) => {
-  let path = genPath(page);
   return {
-    path,
-    name: genName(path),
+    path: path(page),
+    name: name(page),
     component: view(page)
   }
 })

@@ -3,10 +3,7 @@ const compiler = require('@megalo/template-compiler')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const {
-  pagesEntry,
-  getSubPackagesRoot
-} = require('@megalo/entry')
+const { pagesEntry, getSubPackagesRoot } = require('@megalo/entry')
 const _ = require('./util');
 const webpack = require('webpack');
 const path = require('path');

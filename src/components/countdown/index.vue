@@ -3,28 +3,28 @@
     <template v-if="isShowDay">
       <div class="mg-count-down__item">
         <div class="mg-count-down__time-box">
-          <text class="mg-count-down__time">{{resDay}}</text>
+          <span class="mg-count-down__time">{{resDay}}</span>
         </div>
-        <text class="mg-count-down__separator">{{format.day}}</text>
+        <span class="mg-count-down__separator">{{format.day}}</span>
       </div>
     </template>
     <div class="mg-count-down__item">
       <div class="mg-count-down__time-box">
-        <text class="mg-count-down__time">{{resHours}}</text>
+        <span class="mg-count-down__time">{{resHours}}</span>
       </div>
-      <text class="mg-count-down__separator">{{format.hours}}</text>
+      <span class="mg-count-down__separator">{{format.hours}}</span>
     </div>
     <div class="mg-count-down__item">
       <div class="mg-count-down__time-box">
-        <text class="mg-count-down__time">{{resMinutes}}</text>
+        <span class="mg-count-down__time">{{resMinutes}}</span>
       </div>
-      <text class="mg-count-down__separator">{{format.minutes}}</text>
+      <span class="mg-count-down__separator">{{format.minutes}}</span>
     </div>
     <div class="mg-count-down__item">
       <div class="mg-count-down__time-box">
-        <text class="mg-count-down__time">{{resSeconds}}</text>
+        <span class="mg-count-down__time">{{resSeconds}}</span>
       </div>
-      <text class="mg-count-down__separator">{{format.seconds}}</text>
+      <span class="mg-count-down__separator">{{format.seconds}}</span>
     </div>
   </div>
 </template>
@@ -73,7 +73,11 @@ export default {
   data() {
     return {
       totalSeconds: this.toSeconds(),
-      timer: null
+      timer: null,
+      d: this.day,
+      h: this.hours,
+      m: this.minutes,
+      s: this.seconds
     }
   },
   computed: {
@@ -81,16 +85,16 @@ export default {
       return `mg-count-down${this.isCard ? ' mg-count-down--card' : ''}${this.rootClassName}`;
     },
     resDay() {
-      return this.formatNum(this.day);
+      return this.formatNum(this.d);
     },
     resHours() {
-      return this.formatNum(this.hours);
+      return this.formatNum(this.h);
     },
     resMinutes() {
-      return this.formatNum(this.minutes);
+      return this.formatNum(this.m);
     },
     resSeconds() {
-      return this.formatNum(this.seconds);
+      return this.formatNum(this.s);
     }
   },
   mounted() {
@@ -110,21 +114,21 @@ export default {
     },
     setTimer() {
       this.timer = setInterval(() => {
-        let day = 0,
-            hours = 0,
-            minutes = 0,
-            seconds = 0;
+        let d = 0,
+            h = 0,
+            m = 0,
+            s = 0;
         
         if(this.totalSeconds > 0) {
-          day = Math.floor(this.totalSeconds / 86400);
-          hours = Math.floor(this.totalSeconds / 3600) - day * 24;
-          minutes = Math.floor(this.totalSeconds / 60) - day * 24 * 60 - hours * 60;
-          seconds = Math.floor(this.totalSeconds) - day * 24 * 60 * 60 - hours * 60 * 60 - minutes * 60;
+          d = Math.floor(this.totalSeconds / 86400);
+          h = Math.floor(this.totalSeconds / 3600) - d * 24;
+          m = Math.floor(this.totalSeconds / 60) - d * 24 * 60 - h * 60;
+          s = Math.floor(this.totalSeconds) - d * 24 * 60 * 60 - h * 60 * 60 - m * 60;
         }
-        this.day = day;
-        this.hours = hours;
-        this.minutes = minutes;
-        this.seconds = seconds;
+        this.d = d;
+        this.h = h;
+        this.m = m;
+        this.s = s;
         this.totalSeconds--;
         if(this.totalSeconds < 0) {
           clearInterval(this.timer);

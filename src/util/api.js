@@ -11,7 +11,7 @@ let platform = ''
 if (isWEAPP) {
   platform = 'wechat'
 } else if (isWEB) {
-  platform = 'h5'
+  platform = 'web'
 } else if (isSWAN) {
   platform = 'swan'
 } else if (isALIPAY) {

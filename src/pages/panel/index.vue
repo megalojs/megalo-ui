@@ -6,7 +6,7 @@
           <img :src="icon" class="img" mode="widthFix" />
         </template>
         <template v-else>
-          <text class="mg-icon mg-icon-list"></text>
+          <span class="mg-icon mg-icon-list"></span>
         </template>
       </div>
       <div class="panel-header__title">{{title}}</div>
@@ -14,8 +14,8 @@
     <div class="panel-body">
       <div class="component-list">
         <div class="component-list__item" :key="item.id" @click="gotoComponent(item.id)" v-for="item in itemList">
-          <text class="name">{{item.id + ' ' + item.name}}</text>
-          <text class="mg-icon mg-icon-chevron-right"></text>
+          <span class="name">{{item.id + ' ' + item.name}}</span>
+          <span class="mg-icon mg-icon-chevron-right"></span>
         </div>
       </div>
     </div>
@@ -23,9 +23,8 @@
 </template>
 
 <script>
-  import {
-    iconView
-  } from '../constants/url.js';
+  import { iconView } from '../constants/url.js';
+  import { isWEB } from '@/util';
   const panelNames = {
     view: {
       name: '视图',
@@ -80,7 +79,12 @@
   export default {
     computed: {
       currentId() {
-        const id = this.$mp.options.id || '';
+        let id = '';
+        if(isWEB) {
+          id = this.$route.query.id;
+        } else {
+          id = this.$mp.options.id;
+        }
         return id.toLowerCase();
       },
       title() {
