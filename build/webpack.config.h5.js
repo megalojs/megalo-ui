@@ -8,7 +8,7 @@ const webpack = require('webpack');
 module.exports = {
   mode: 'development',
   entry: {
-    app: './src/app.js'
+    app: './src/app-h5.js'
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -87,7 +87,7 @@ module.exports = {
       chunksSortMode: 'none'
     }),
     new webpack.ProvidePlugin({
-      'Megalo': [path.resolve(`./node_modules/@megalo/api/platforms/web`), 'default']
+      'Megalo': [_.resolve(`./node_modules/@megalo/api/platforms/web`), 'default']
     })
   ]
 }

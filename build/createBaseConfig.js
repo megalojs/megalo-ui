@@ -124,7 +124,7 @@ function createBaseConfig(platform = 'wechat') {
         to: _.resolve(`dist-${platform}/native`)
       }], {}),
       new webpack.ProvidePlugin({
-        'Megalo': [path.resolve(`./node_modules/@megalo/api/platforms/${platform}`), 'default']
+        'Megalo': [_.resolve(`./node_modules/@megalo/api/platforms/${platform}`), 'default']
       })
     ]
   }

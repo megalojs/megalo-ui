@@ -32,7 +32,6 @@
   import {
     isMINIAPP,
     isWEB,
-    Megalo
   } from '../../util';
   import {
     mixin
