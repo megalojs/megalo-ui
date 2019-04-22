@@ -9,7 +9,7 @@
   "scripts": {
     "build:wechat": "webpack --config ./build/webpack.config.wechat.js",
     "build:alipay": "webpack --config ./build/webpack.config.alipay.js",
-    "build:swan": "webpack --config ./build/webpack.config.swan.js",
+    "build:swan": "webpack --config ./buildhttp://0.0.0.0:8080/webpack.config.swan.js",
     "build:component": "rimraf -rf dist && node ./build/ui.js",
     "dev:wechat": "webpack --config ./build/webpack.config.wechat.js -w",
     "dev:alipay": "webpack --config ./build/webpack.config.alipay.js -w",

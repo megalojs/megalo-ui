@@ -61,7 +61,10 @@
       }, {
         id: 'Timeline',
         name: '时间轴'
-      }, 
+      }, {
+        id: 'ScrollView',
+        name: '可滚动视图区域'
+      },
       // {
       //   id: 'Swiper',
       //   name: '滑块视图容器'
