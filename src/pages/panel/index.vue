@@ -62,10 +62,10 @@
         id: 'Timeline',
         name: '时间轴'
       }, 
-      // {
-      //   id: 'Swiper',
-      //   name: '滑块视图容器'
-      // }, 
+      {
+        id: 'Swiper',
+        name: '滑块视图容器'
+      },
       // {
       //   id: 'Load-More',
       //   name: '页面提示'
