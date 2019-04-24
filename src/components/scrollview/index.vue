@@ -106,10 +106,6 @@
                 type: Boolean,
                 default: false,
             },
-            enableBackToTop: { // TODO
-                type: Boolean,
-                default: false,
-            },
             ariaLabel: {
                 type: String,
             },

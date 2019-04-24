@@ -8,35 +8,16 @@
                 @scroll="scroll"
                 @scrolltoupper="upper"
                 @scrolltolower="lower"
-                :scrollWithAnimation="true"
+                :scrollWithAnimation="false"
                 :scroll-top="scrollTop"
-                :scrollIntoView="toView"
+                :scroll-into-view="toView"
         >
-            <div class="scroll-view-item bc_green">
+            <div id="green" class="scroll-view-item bc_green">
                 <button>click me to scroll into view</button>
             </div>
-            <div class="scroll-view-item bc_red"></div>
-            <div class="scroll-view-item bc_yellow"></div>
-            <div class="scroll-view-item bc_blue"></div>
-        </mgScrollView>
-
-        <mgScrollView
-                scroll-x
-                scroll-y
-                style="height: 200px;"
-                @scroll="scroll"
-                @scrolltoupper="upper"
-                @scrolltolower="lower"
-                :scrollWithAnimation="true"
-                :scroll-top="scrollTop"
-                :scrollIntoView="toView"
-        >
-            <div class="scroll-view-item bc_green">
-                <button>click me to scroll into view</button>
-            </div>
-            <div class="scroll-view-item bc_red"></div>
-            <div class="scroll-view-item bc_yellow"></div>
-            <div class="scroll-view-item bc_blue"></div>
+            <div id="red" class="scroll-view-item bc_red"></div>
+            <div id="yellow" class="scroll-view-item bc_yellow"></div>
+            <div id="blue" class="scroll-view-item bc_blue"></div>
         </mgScrollView>
         <button size="mini" @click="tap">click me to scroll into view</button>
         <button size="mini" @click="tapMove">click me to scroll</button>
