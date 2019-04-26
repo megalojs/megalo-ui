@@ -1,5 +1,7 @@
 <template>
-    <div class="mg-swiper" :class="resClassName" :style="customStyle">
+    <swiper v-if="isMINIAPP"></swiper>
+    <div v-else class="mg-swiper" :instance-id="id" :class="resClassName" :style="customStyle">
+        <div v-html="indicatorStyle"></div>
         <swiper
             style="flex: 1;max-width: 100%;max-height: 100%;overflow: visible;"
             :style="computedStyle"
@@ -20,6 +22,8 @@
     import {mixin} from '../../mixins';
     import 'swiper/dist/css/swiper.css';
     import { swiper, swiperSlide } from 'vue-awesome-swiper';
+
+    let INSTANCE_ID = 0
 
     export default {
         mixins: [mixin],
@@ -89,6 +93,7 @@
                 lastTranslate: 0,
                 isTransition: false,
                 lastCurrent: 0,
+                id: INSTANCE_ID++,
             };
         },
         computed: {
@@ -101,7 +106,6 @@
             swiperOption() {
                 let self = this;
                 return {
-                    // initialSlide
                     loop: this.circular,
                     pagination: {el: '.swiper-pagination'}, // TODO: 好像不支持动态修改
                     autoplay: this.autoplay && {delay: this.interval, disableOnInteraction: false},
@@ -133,6 +137,16 @@
                         }
                     },
                 };
+            },
+            indicatorStyle() {
+                return `<style type="text/css">
+                    .${this.resClassName}[instance-id="${this.id}"] .swiper-pagination-bullet {
+                        background-color: ${this.indicatorColor};
+                    }
+                    .${this.resClassName}[instance-id="${this.id}"] .swiper-pagination-bullet-active {
+                        background-color: ${this.indicatorActiveColor};
+                    }
+                </style>`
             },
             resClassName() {
                 return `mg-swiper${this.rootClassName}`;
@@ -195,7 +209,7 @@
                     detail: detail || {
                         current: swiper.realIndex,
                         currentItemId: swiper.slides[swiper.activeIndex].getAttribute('item-id') || '',
-                        // source: touch ? 'touch' : 'autoplay',
+                        source: 'autoplay',
                     },
                     timeStamp: new Date().getTime(),
                     type,
@@ -243,6 +257,27 @@
                 this.scrollToIndex(newValue, true);
             },
         },
+        updated() {
+            const swiper = this.$refs.swiper.swiper
+            if (swiper) {
+                this.$nextTick(() => {
+                    if (this.circular) {
+                        // https://github.com/surmon-china/vue-awesome-swiper/issues/397
+                        // 解决slot元素更新, 导致在loop模式下, 复制的dom节点不更新的问题
+                        swiper.loopDestroy()
+                        swiper.loopCreate()
+                    }
+
+                    swiper.update()
+                })
+            }
+        },
+        beforeDestroy() {
+            const swiper = this.$refs.swiper.swiper
+            if (swiper) {
+                swiper.destroy()
+            }
+        }
     }
 </script>
 
@@ -257,13 +292,9 @@
         display: flex;
         margin: 0 auto;
         overflow: hidden;
-    }
 
-    .swiper-pagination-bullet {
-        background-color: rgba(0, 0, 0, 0.6);
-
-        &.swiper-pagination-bullet-active {
-            background-color: #333333;
+        .swiper-pagination-bullet {
+            opacity: 1;
         }
     }
 </style>

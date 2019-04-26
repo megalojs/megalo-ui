@@ -5,6 +5,8 @@
       <mySwiper
         style="height: 230px"
         :indicator-dots="indicatorDots"
+        indicatorColor="#ff0"
+        indicatorActiveColor="#f0f"
         :circular="circular"
         :autoplay="autoplay"
         :displayMultipleItems="displayMultipleItems"
@@ -13,13 +15,13 @@
         previousMargin="20px"
         :nextMargin="nextMargin"
         :current="current"
-        :currentItemId="currentItemId"
+        :currentItemId="''+currentItemId"
         @change="handleChange"
         @animationfinish="animationfinish"
         @transition="transition"
       >
-        <mgSwiperItem v-for="i in slides" :item-id="i">
-          <div @click="handleClick(i)" style="border: 1px solid yellow;height: 200px;background-color: #fff;">{{i}}</div>
+        <mgSwiperItem v-for="i in slides" :key="'test' + i" :item-id="i">
+          <div :key="'div' +i" @click="handleClick(i)" style="border: 1px solid yellow;height: 200px;background-color: #fff;">{{i}}</div>
         </mgSwiperItem>
       </mySwiper>
       <button @click="current = (current + 1) % slides.length">slide to next</button>
@@ -54,7 +56,7 @@
                 slides: [0, 1, 2],
                 displayMultipleItems: 1,
                 nextMargin: '10px',
-                autoplay: true,
+                autoplay: false,
                 vertical: false,
                 circular: true,
                 indicatorDots: true,
@@ -76,7 +78,7 @@
                 // console.log(e);
             },
             transition(e) {
-                console.log(e);
+                // console.log(e);
             },
             tap(e) {
                 for (let i = 0; i < order.length; ++i) {
