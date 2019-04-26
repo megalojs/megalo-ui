@@ -44,6 +44,9 @@
         id: 'Badge',
         name: '徽标'
       }, {
+        id: 'Button',
+        name: '按钮'
+      }, {
         id: 'CountDown',
         name: '倒计时'
       }, {
@@ -52,6 +55,9 @@
       }, {
         id: 'Divider',
         name: '分割线'
+      }, {
+        id: 'Form',
+        name: '表单'
       }, {
         id: 'NoticeBar',
         name: '通告栏'
