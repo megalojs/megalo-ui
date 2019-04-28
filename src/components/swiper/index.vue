@@ -23,6 +23,7 @@
     import 'swiper/dist/css/swiper.css';
     import { swiper, swiperSlide } from 'vue-awesome-swiper';
 
+
     let INSTANCE_ID = 0
 
     export default {
