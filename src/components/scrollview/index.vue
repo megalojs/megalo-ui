@@ -19,7 +19,7 @@
     //b = start value
     //c = change in value
     //d = duration
-    const easeInOutQuad = function (t, b, c, d) {
+    function easeInOutQuad(t, b, c, d) {
         t /= d / 2;
         if (t < 1) return (c / 2) * t * t + b;
         t--;
@@ -28,8 +28,8 @@
 
     function scrollTo(element, animation, options = {}, duration = 300) {
         const {scrollLeft, scrollTop} = options;
-        const hasLeft = scrollLeft || scrollLeft === 0;
-        const hasTop = scrollTop || scrollTop === 0;
+        const hasLeft = typeof scrollLeft === 'number';
+        const hasTop = typeof scrollTop === 'number';
 
         if (!animation) {
             if (hasLeft) {
@@ -72,6 +72,14 @@
             }
         };
         animateScroll();
+    }
+
+    function cloneEvent(e) {
+        const newEvent = {};
+        for (let key in e) {
+            newEvent[key] = e[key];
+        }
+        return newEvent;
     }
 
     export default {
@@ -155,65 +163,57 @@
                     clientHeight,
                 } = e.target;
 
-                const baseEvent = {
-                    currentTarget: e.currentTarget,
-                    target: e.target,
-                    timeStamp: e.timeStamp,
-                };
                 const deltaX = this.lastScrollLeft - scrollLeft;
                 const deltaY = this.lastScrollTop - scrollTop;
-                this.$emit('scroll', {
-                    ...baseEvent,
-                    detail: {
-                        deltaX,
-                        deltaY,
-                        scrollHeight,
-                        scrollLeft,
-                        scrollTop,
-                        scrollWidth,
-                    },
-                    type: 'scroll',
-                });
+                e.detail = {
+                    deltaX,
+                    deltaY,
+                    scrollHeight,
+                    scrollLeft,
+                    scrollTop,
+                    scrollWidth,
+                }
+                this.$emit('scroll', e);
 
                 this.lastScrollLeft = scrollLeft;
                 this.lastScrollTop = scrollTop;
 
                 const scrollRight = scrollWidth - scrollLeft - clientWidth;
                 const scrollBottom = scrollHeight - scrollTop - clientHeight;
-
                 if ((e.timeStamp - this.lastToTopTimestamp >= EDGE_EVENT_THRESHOLD) && deltaY > 0 && scrollTop <= this.upperThreshold) {
                     this.lastToTopTimestamp = e.timeStamp;
+
                     this.$emit('scrolltoupper', {
-                        ...baseEvent,
-                        detail: {direction: 'top',},
+                        ...cloneEvent(e),
                         type: 'scrolltoupper',
+                        detail: {direction: 'top'},
                     });
                 }
 
                 if ((e.timeStamp - this.lastToLeftTimestamp >= EDGE_EVENT_THRESHOLD) && deltaX > 0 && scrollLeft <= this.upperThreshold) {
                     this.lastToLeftTimestamp = e.timeStamp;
                     this.$emit('scrolltoupper', {
-                        ...baseEvent,
-                        detail: {direction: 'left',},
+                        ...cloneEvent(e),
                         type: 'scrolltoupper',
+                        detail: {direction: 'left'},
                     });
                 }
 
                 if ((e.timeStamp - this.lastToBottomTimestamp >= EDGE_EVENT_THRESHOLD) && deltaY < 0 && scrollBottom <= this.lowerThreshold) {
                     this.lastToBottomTimestamp = e.timeStamp;
                     this.$emit('scrolltolower', {
-                        ...baseEvent,
-                        detail: {direction: 'bottom',},
+                        ...cloneEvent(e),
                         type: 'scrolltolower',
+                        detail: {direction: 'bottom'},
                     });
                 }
 
                 if ((e.timeStamp - this.lastToRightTimestamp >= EDGE_EVENT_THRESHOLD) && deltaX < 0 && scrollRight <= this.lowerThreshold) {
                     this.lastToRightTimestamp = e.timeStamp;
                     this.$emit('scrolltolower', {
-                        ...baseEvent,
-                        detail: {direction: 'right',},
+                        ...cloneEvent(e),
                         type: 'scrolltolower',
+                        detail: {direction: 'right'},
                     });
                 }
             },

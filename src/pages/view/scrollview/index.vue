@@ -45,7 +45,7 @@
         },
         methods: {
             scroll(e) {
-                console.log(e);
+                // console.log(e);
             },
             tap(e) {
                 for (let i = 0; i < order.length; ++i) {
