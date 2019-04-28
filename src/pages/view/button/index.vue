@@ -2,23 +2,23 @@
   <div class="page">
     <doc-header title="Button 按钮"></doc-header>
     <div class="doc-body">
-      <myButton :size="size" :loading="loading" :plain="plain" :disabled="disabled" type="default" @click="handleClick">default</myButton>
-      <myButton :size="size" :loading="loading" :plain="plain" :disabled="disabled" type="primary" @click="handleClick">primary</myButton>
-      <myButton :size="size" :loading="loading" :plain="plain" :disabled="disabled" type="warn" @click="handleClick">warn</myButton>
-      <myButton :plain="true" @click="disabled = !disabled">点击设置以上按钮disabled属性</myButton>
-      <myButton :plain="true" @click="plain = !plain">点击设置以上按钮plain属性</myButton>
-      <myButton :plain="true" @click="loading = !loading">点击设置以上按钮loading属性</myButton>
+      <mgButton :size="size" :loading="loading" :plain="plain" :disabled="disabled" type="default" @click="handleClick">default</mgButton>
+      <mgButton :size="size" :loading="loading" :plain="plain" :disabled="disabled" type="primary" @click="handleClick">primary</mgButton>
+      <mgButton :size="size" :loading="loading" :plain="plain" :disabled="disabled" type="warn" @click="handleClick">warn</mgButton>
+      <mgButton :plain="true" @click="disabled = !disabled">点击设置以上按钮disabled属性</mgButton>
+      <mgButton :plain="true" @click="plain = !plain">点击设置以上按钮plain属性</mgButton>
+      <mgButton :plain="true" @click="loading = !loading">点击设置以上按钮loading属性</mgButton>
     </div>
   </div>
 </template>
 
 <script>
   import docHeader from '../../components/doc-header';
-  import myButton from '../../../components/button';
+  import mgButton from '../../../components/button';
   export default {
     components: {
       docHeader,
-      myButton
+      mgButton
     },
     data() {
       return {
@@ -29,7 +29,8 @@
       }
     },
     methods: {
-      handleClick() {
+      handleClick(e) {
+        console.log(e);
         this.size = this.size === 'mini' ? 'default' : 'mini'
       }
     }

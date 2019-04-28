@@ -1,7 +1,33 @@
 <template>
+    <button
+        v-if="isMINIAPP"
+        :class="resClassName"
+        :disabled="disabled"
+        :plain="plain"
+        :type="type"
+        :size="size"
+        :lang="lang"
+        :session-from="sessionFrom"
+        :send-message-title="sendMessageTitle"
+        :send-message-path="sendMessagePath"
+        :loading="loading"
+        :form-type="formType"
+        :open-type="openType"
+        :hover-class="hoverClass"
+        :hover-stop-propagation="hoverStopPropagation"
+        :hover-start-time="hoverStartTime"
+        :hover-stay-time="hoverStayTime"
+        :style="customStyle"
+        @click="$emit('click')"
+    >
+        <slot></slot>
+    </button>
   <button
+      v-else
+      h5="true"
       :class="resClassName"
       :disabled="disabled"
+      :loading="loading"
       :plain="plain"
       :type="type"
       :size="size"
@@ -17,6 +43,7 @@
 
 <script>
 import { mixin } from '../../mixins';
+import { isMINIAPP } from '../../util';
 
 const BUTTON_SIZE = {
   default: 'default',
@@ -73,6 +100,7 @@ export default {
   },
     data() {
         return {
+          isMINIAPP,
           lastTouchStartTimestamp: null,
           lastTouch: null,
           hover: false,
@@ -82,15 +110,33 @@ export default {
     },
   computed: {
     resClassName() {
-      return `mg-button${this.rootClassName} ${this.hover ? this.hoverClass : ''}`
+      return `mg-button${this.rootClassName} ${(this.hover || (this.loading && !this.plain)) ? this.hoverClass : ''}`
     },
   },
   methods: {
       handleClick(e) {
-          if (this.formType !== 'submit') {
+          if (this.disabled) {
+              return;
+          }
+
+          if (this.formType !== BUTTON_FORM_TYPE.submit) {
               e.preventDefault();
           }
-          !this.disabled && this.$emit('click')
+          if (this.formType === BUTTON_FORM_TYPE.reset) {
+              let parentNode = this.$el.parentNode
+              let formDom = false
+              while (parentNode && parentNode !== document.body) {
+                  if (parentNode.className.indexOf('mg-form') !== -1) {
+                      formDom = parentNode;
+                      break;
+                  }
+                  parentNode = parentNode.parentNode
+              }
+              if (formDom) {
+                  formDom.reset();
+              }
+          }
+          this.$emit('click', e);
       },
       handleTouchStart(e) {
           if (this.disabled) {
@@ -102,13 +148,12 @@ export default {
           this.lastTouch = e.touches[0]
           this.hoverTimer = setTimeout(() => this.hover = true, this.hoverStartTime)
       },
-      handleTouchMove(e) {
+      handleTouchMove() {
           if (this.disabled) {
               return;
           }
 
-          // const touch = e.touches[0];
-          this.hover = false;
+          this.hover = false
           clearTimeout(this.hoverTimer)
       },
       handleTouchEnd() {
@@ -135,7 +180,7 @@ export default {
     }
 }
 
-.mg-button {
+.mg-button[h5="true"] {
     width: 100%;
     outline: none;
     padding: 0 14px;
@@ -165,93 +210,133 @@ export default {
     }
 
     &:not([plain=true])::after {
-        content: "";
-        width: 100%;
-        height: 100%;
-        box-sizing:border-box;
+        content: " ";
+        width: 200%;
+        height: 200%;
         position: absolute;
-        border-radius:5px;
-        left: 0;
         top: 0;
-        border: 1px solid #c1c1c1; // 颜色要确认一下
+        left: 0;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        transform: scale(0.5);
+        transform-origin: 0 0;
+        box-sizing: border-box;
+        border-radius: 10px;
 
-        @media screen and (-webkit-min-device-pixel-ratio: 2) {
-            & {
-                border-width: 0.5px;
-            }
-        }
-        @media screen and (-webkit-min-device-pixel-ratio: 3) {
-            & {
-                border-width: 0.333333px;
-            }
-        }
+        /*content: "";*/
+        /*width: 100%;*/
+        /*height: 100%;*/
+        /*box-sizing:border-box;*/
+        /*position: absolute;*/
+        /*border-radius:5px;*/
+        /*left: 0;*/
+        /*top: 0;*/
+        /*border: 1px solid rgba(0, 0, 0, .2);*/
+
+        /*@media screen and (-webkit-min-device-pixel-ratio: 2) {*/
+        /*    & {*/
+        /*        border-width: 0.5px;*/
+        /*    }*/
+        /*}*/
+        /*@media screen and (-webkit-min-device-pixel-ratio: 3) {*/
+        /*    & {*/
+        /*        border-width: 0.333333px;*/
+        /*    }*/
+        /*}*/
     }
 
     &[type=default] {
-        &[disabled] {
-            color:rgba(0, 0, 0, 0.3);
-            background-color:#F7F7F7;
+        &:not([plain]) {
+            background-color: #F8F8F8;
+            color: #000;
+
+            &[disabled] {
+                color:rgba(0, 0, 0, 0.3);
+                background-color: #F7F7F7;
+            }
+
+            &.button-hover {
+                color: rgba(0, 0, 0, .6);
+                background-color: #DEDEDE;
+            }
         }
 
         &[plain] {
-            border: 1px solid #000;
-            color: #000;
-            background-color: #fff;
+            border: 1px solid #353535;
+            color: #353535;
+            background-color: transparent;
+
+            &.button-hover {
+                border-color: rgba(53, 53, 53, 0.6);
+                color: rgba(53, 53, 53, 0.6);
+            }
+
+            &[disabled][loading] {
+                color: #353535;
+            }
         }
     }
 
     &[type=primary] {
-        background-color: #1AAD19;
-        color: #fff;
+        &:not([plain]) {
+            background-color: #1AAD19;
+            color: #fff;
 
-        &[disabled] {
-            color:rgba(255, 255, 255, 0.6);
-            background-color: #9ED99D;
-        }
-
-        &:not([disabled]) {
-            &.button-hover {
-                color: hsla(0,0%,100%,.6);
-                background-color: #179b16;
+            &[disabled] {
+                color:rgba(255, 255, 255, 0.6);
+                background-color: #9ED99D;
             }
 
-            &[plain] {
-                border: 1px solid #1AAD19;
-                color: #1AAD19;
-                background-color: #fff;
 
-                &.button-hover {
-                    border: 1px solid #179b16;
-                    color: #179b16;
-                }
+            &.button-hover {
+                color: rgba(255, 255, 255, .6);
+                background-color: #179b16;
+            }
+        }
+
+        &[plain] {
+            border: 1px solid #1AAD19;
+            color: #1AAD19;
+            background-color: transparent;
+
+            &.button-hover {
+                border-color: rgba(26, 173, 25, 0.6);
+                color: rgba(26, 173, 25, 0.6);
+            }
+
+            &[disabled][loading] {
+                color: #1AAD19;
             }
         }
     }
 
     &[type=warn] {
-        background-color: #E64340;
-        color: #fff;
+        &:not([plain]) {
+            background-color: #E64340;
+            color: #fff;
 
-        &[disabled] {
-            color:rgba(255, 255, 255, 0.6);
-            background-color: #EC8B89;
-        }
-
-        &:not([disabled]) {
-            &.button-hover {
-                color: hsla(0,0%,100%,.6);
-                background-color: #ce3c39;
+            &[disabled] {
+                color:rgba(255, 255, 255, 0.6);
+                background-color: #EC8B89;
             }
 
-            &[plain] {
-                border: 1px solid #E64340;
-                color: #E64340;
-                background-color: #fff;
+            &.button-hover {
+                color: rgba(255, 255, 255, .6);
+                background-color: #ce3c39;
+            }
+        }
 
-                &.button-hover {
-                    border: 1px solid #ce3c39;
-                    color: #ce3c39;
-                }
+        &[plain] {
+            border: 1px solid #E64340;
+            color: #E64340;
+            background-color: transparent;
+
+            &.button-hover {
+                border-color: rgba(230, 67, 64, 0.6);
+                color: rgba(230, 67, 64, 0.6);
+            }
+
+            &[disabled][loading] {
+                color: #E64340;
             }
         }
     }
@@ -270,30 +355,3 @@ export default {
     animation: rotate 1s linear infinite;
 }
 </style>
-
-
-
-size | 支持 | 支持 |
-type | 支持 | 支持 |
-plain | 支持 | 支持 |
-disabled | 支持 | 支持 |
-loading | 支持 | 支持 |
-form-type | 支持 | 支持 |
-open-type | 支持 | 支持 |
-hover-class | 支持 | 支持 |
-hover-stop-propagation | 支持 | 支持 |
-hover-start-time | 支持 | 支持 |
-hover-stay-time | 支持 | 支持 |
-lang | 支持 | 支持 |
-session-from | 支持 | 支持 |
-send-message-title | 支持 | 支持 |
-send-message-path | 支持 | 支持 |
-send-message-img | 支持 | 支持 |
-app-parameter | 支持 | 支持 |
-show-message-card | 支持 | 支持 |
-bindgetuserinfo | 支持 | 支持 |
-bindcontact | 支持 | 支持 |
-bindgetphonenumber | 支持 | 支持 |
-binderror | 支持 | 支持 |
-bindopensetting | 支持 | 支持 |
-bindlaunchapp | 支持 | 支持 |

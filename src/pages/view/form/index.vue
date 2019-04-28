@@ -2,23 +2,24 @@
   <div class="page">
     <doc-header title="Form 表单"></doc-header>
     <div class="doc-body">
-      <myForm @submit="handleSubmit">
-        <myButton form-type="submit">提交</myButton>
-        <myButton>按钮</myButton>
-      </myForm>
+      <mgForm :reportSubmit="true" @submit="handleSubmit" @reset="handleReset">
+        <input type="text" name="hello">
+        <mgButton form-type="submit">提交</mgButton>
+        <mgButton form-type="reset">重置</mgButton>
+      </mgForm>
     </div>
   </div>
 </template>
 
 <script>
   import docHeader from '../../components/doc-header';
-  import myForm from '../../../components/form';
-  import myButton from '../../../components/button';
+  import mgForm from '../../../components/form';
+  import mgButton from '../../../components/button';
   export default {
     components: {
       docHeader,
-      myForm,
-      myButton
+      mgForm,
+      mgButton
     },
     data() {
       return {
@@ -29,8 +30,15 @@
       }
     },
     methods: {
-      handleSubmit() {
-        alert('submit')
+      handleSubmit(e) {
+        console.log('submit')
+        console.log(e)
+        // alert('submit')
+      },
+      handleReset(e) {
+        console.log('reset')
+        console.log(e)
+        // alert('submit')
       }
     }
   }
