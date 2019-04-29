@@ -21,8 +21,7 @@
 <script>
     import {mixin} from '../../mixins';
     import 'swiper/dist/css/swiper.css';
-    import { swiper, swiperSlide } from 'vue-awesome-swiper';
-
+    import { swiper } from 'vue-awesome-swiper';
 
     let INSTANCE_ID = 0
 
@@ -30,7 +29,6 @@
         mixins: [mixin],
         components: {
             swiper,
-            swiperSlide
         },
         props: {
             indicatorDots: {
@@ -105,7 +103,6 @@
                     || hackRequestAnimationFrame;
             },
             swiperOption() {
-                let self = this;
                 return {
                     loop: this.circular,
                     pagination: {el: '.swiper-pagination'}, // TODO: 好像不支持动态修改
@@ -126,14 +123,31 @@
                         //             console.log(self.$slots.default[0].child.$slots.default[0].data.on.click(12));
                         //         }
                         // },
-                        tap: function (e) {
+                        // 受限于swiper的实现机制, loop模式下会克隆两边的dom节点
+                        // 导致原先通过vue绑定在dom上的事件不会在克隆的dom节点上触发
+                        // 只能通过找到相对应的vnode节点后, 代码调用相应事件
+                        // 暂时只实现了触发对应的swiperItem或者swiperItem第一个子元素的点击事件
+                        tap: e => {
+                            if (!this.circular) {
+                                return;
+                            }
+
                             let el = e.target;
                             while (el && el.className.indexOf('swiper-slide') === -1) {
                                 el = el.parentNode;
                             }
-                            // TODO: 找到对应元素 模拟点击
-                            if (el.className.indexOf('swiper-slide-duplicate') !== -1) {
-                                console.log(self.$slots.default[0].child.$slots.default[0].data.on.click(12));
+                            if (el && el.className.indexOf('swiper-slide-duplicate') !== -1) {
+                                const index = el.dataset.swiperSlideIndex
+                                const swiperItem = this.$slots.default[index];
+                                try {
+                                    swiperItem.child._events.click[0](e)
+                                } catch (e) {
+                                    try {
+                                        swiperItem.child.$slots.default[0].data.on.click(e)
+                                    } catch (e) {
+                                        // do nothing
+                                    }
+                                }
                             }
                         }
                     },
@@ -172,7 +186,7 @@
             },
         },
         mounted() {
-             if (this.current) {
+            if (this.current) {
                 this.scrollToIndex(this.current, false);
             }
         },
@@ -204,17 +218,24 @@
             getSwiperEvent(type, detail) {
                 const swiper = this.$refs.swiper.swiper;
 
-                return {
-                    target: {},
-                    currentTarget: {},
-                    detail: detail || {
-                        current: swiper.realIndex,
-                        currentItemId: swiper.slides[swiper.activeIndex].getAttribute('item-id') || '',
-                        source: 'autoplay',
-                    },
-                    timeStamp: new Date().getTime(),
-                    type,
-                };
+                let e
+                try {
+                    e = new TouchEvent(type);
+                } catch (e) {
+                    e = document.createEvent('Event');
+                    e.initEvent(type, true, true);
+                }
+                try {
+                    Object.defineProperty(e, 'detail', {
+                        enumerable: true,
+                        value: detail || {
+                            current: swiper.realIndex,
+                            currentItemId: swiper.slides[swiper.activeIndex].getAttribute('item-id') || '',
+                            source: 'autoplay',
+                        }
+                    });
+                } catch (e) {}
+                return e
             },
             handleSlideMove() {
                 const translate = this.$refs.swiper.swiper.getTranslate();
