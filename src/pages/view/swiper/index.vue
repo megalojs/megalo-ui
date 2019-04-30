@@ -3,37 +3,29 @@
     <doc-header title="Swiper 滑块视图容器"></doc-header>
     <div class="doc-body">
       <mySwiper
-              style="height: 230px"
-              :indicator-dots="indicatorDots"
-              indicatorColor="#ff0"
-              indicatorActiveColor="#f0f"
-              :circular="circular"
-              :autoplay="autoplay"
-              :displayMultipleItems="displayMultipleItems"
-              :interval="interval"
-              :vertical="vertical"
-              previousMargin="20px"
-              :nextMargin="nextMargin"
-              :current="current"
-              :currentItemId="''+currentItemId"
-              @change="handleChange"
-              @animationfinish="animationfinish"
-              @transition="transition"
+            style="height: 230px"
+            :indicator-dots="indicatorDots"
+            :circular="circular"
+            :autoplay="autoplay"
+            :displayMultipleItems="displayMultipleItems"
+            :interval="interval"
+            :vertical="vertical"
+            previousMargin="20px"
+            :nextMargin="nextMargin"
+            :current="current"
+            :currentItemId="''+currentItemId"
+            @change="handleChange"
+            @animationfinish="animationfinish"
+            @transition="transition"
       >
         <mgSwiperItem v-for="i in slides" :key="'test' + i" :item-id="'div' + i">
-          <div :key="'div' +i" @click="handleClick(i)" style="border: 1px solid yellow;height: 200px;background-color: #fff;">{{i}}</div>
+          <div :key="i" class="swiper-item" :class="i" @click="handleClick(i)"></div>
         </mgSwiperItem>
       </mySwiper>
       <button @click="current = (current + 1) % slides.length">slide to next</button>
       <button @click="indicatorDots = !indicatorDots">indicatorDots</button>
       <button @click="autoplay = !autoplay">autoplay</button>
       <button @click="vertical = !vertical">vertical</button>
-      <button @click="circular = !circular">circular</button>
-      <button @click="interval += 1000">interval</button>
-      <button @click="nextMargin = '20px'">nextMargin</button>
-      <button @click="slides.push(slides.length)">add new slides</button>
-      <button @click="slides = [7, 8]">change slides</button>
-      <button @click="displayMultipleItems++">displayMultipleItems</button>
     </div>
   </div>
 </template>
@@ -43,7 +35,6 @@
   import mySwiper from '../../../components/swiper';
   import mgSwiperItem from '../../../components/swiper-item';
 
-  const order = ['red', 'yellow', 'blue', 'green', 'red']
   export default {
     name: 'home',
     components: {
@@ -53,7 +44,7 @@
     },
     data() {
       return {
-        slides: [0, 1, 2],
+        slides: ['bc_red', 'bc_yellow', 'bc_blue', 'bc_green'],
         displayMultipleItems: 1,
         nextMargin: '10px',
         autoplay: false,
@@ -85,15 +76,9 @@
 </script>
 
 <style lang="scss">
-
-  .scroll-view-item_H {
-    width: 5200px;
-    height: 200px;
-  }
-
-  .scroll-view-item {
+  .swiper-item {
     width: 3300px;
-    height: 200px;
+    height: 230px;
   }
 
   .bc_green {

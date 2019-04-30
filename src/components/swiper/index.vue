@@ -1,6 +1,5 @@
 <template>
-    <swiper v-if="isMINIAPP"></swiper>
-    <div v-else class="mg-swiper" :instance-id="id" :class="resClassName" :style="customStyle">
+    <div class="mg-swiper" :instance-id="id" :class="resClassName" :style="customStyle">
         <div v-html="indicatorStyle"></div>
         <swiper
             style="flex: 1;max-width: 100%;max-height: 100%;overflow: visible;"
