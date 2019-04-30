@@ -1,10 +1,10 @@
 <template>
     <div
+        v-else
         ref="scrollView"
         :class="resClassName"
         :style="computedStyle"
         @scroll="handleScroll"
-        :aria-label="ariaLabel"
     >
         <slot></slot>
     </div>
@@ -114,8 +114,8 @@
                 type: Boolean,
                 default: false,
             },
-            ariaLabel: {
-                type: String,
+            enableBackToTop: {
+                type: Boolean,
             },
         },
         data() {
@@ -260,5 +260,10 @@
 
     .mg-sroll-view {
         position: relative;
+        -webkit-overflow-scrolling: touch;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
 </style>
