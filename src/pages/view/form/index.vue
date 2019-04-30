@@ -3,7 +3,8 @@
     <doc-header title="Form 表单"></doc-header>
     <div class="doc-body">
       <mgForm :reportSubmit="true" @submit="handleSubmit" @reset="handleReset">
-        <input type="text" name="hello">
+        <p><label>name</label><input style="border: 1px solid #333;" type="text" name="name"></p>
+        <p><label>age</label><input style="border: 1px solid #333;" type="text" name="age"></p>
         <mgButton form-type="submit">提交</mgButton>
         <mgButton form-type="reset">重置</mgButton>
       </mgForm>
