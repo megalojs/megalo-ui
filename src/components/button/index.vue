@@ -1,30 +1,5 @@
 <template>
-    <button
-        v-if="isMINIAPP"
-        :class="resClassName"
-        :disabled="disabled"
-        :plain="plain"
-        :type="type"
-        :size="size"
-        :lang="lang"
-        :session-from="sessionFrom"
-        :send-message-title="sendMessageTitle"
-        :send-message-path="sendMessagePath"
-        :loading="loading"
-        :form-type="formType"
-        :open-type="openType"
-        :hover-class="hoverClass"
-        :hover-stop-propagation="hoverStopPropagation"
-        :hover-start-time="hoverStartTime"
-        :hover-stay-time="hoverStayTime"
-        :style="customStyle"
-        @click="$emit('click')"
-    >
-        <slot></slot>
-    </button>
   <button
-      v-else
-      h5="true"
       :class="resClassName"
       :disabled="disabled"
       :loading="loading"
@@ -43,7 +18,6 @@
 
 <script>
 import { mixin } from '../../mixins';
-import { isMINIAPP } from '../../util';
 
 const BUTTON_SIZE = {
   default: 'default',
@@ -100,7 +74,6 @@ export default {
   },
     data() {
         return {
-          isMINIAPP,
           lastTouchStartTimestamp: null,
           lastTouch: null,
           hover: false,
@@ -180,7 +153,7 @@ export default {
     }
 }
 
-.mg-button[h5="true"] {
+.mg-button {
     width: 100%;
     outline: none;
     padding: 0 14px;
@@ -221,27 +194,6 @@ export default {
         transform-origin: 0 0;
         box-sizing: border-box;
         border-radius: 10px;
-
-        /*content: "";*/
-        /*width: 100%;*/
-        /*height: 100%;*/
-        /*box-sizing:border-box;*/
-        /*position: absolute;*/
-        /*border-radius:5px;*/
-        /*left: 0;*/
-        /*top: 0;*/
-        /*border: 1px solid rgba(0, 0, 0, .2);*/
-
-        /*@media screen and (-webkit-min-device-pixel-ratio: 2) {*/
-        /*    & {*/
-        /*        border-width: 0.5px;*/
-        /*    }*/
-        /*}*/
-        /*@media screen and (-webkit-min-device-pixel-ratio: 3) {*/
-        /*    & {*/
-        /*        border-width: 0.333333px;*/
-        /*    }*/
-        /*}*/
     }
 
     &[type=default] {
