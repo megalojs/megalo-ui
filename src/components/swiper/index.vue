@@ -112,16 +112,6 @@
                     centeredSlides: true,
                     loopedSlides: 2,
                     on: {
-                        // click: function (e) {
-                        //         let el = e.target;
-                        //         while (el && el.className.indexOf('swiper-slide') === -1) {
-                        //             el = el.parentNode;
-                        //         }
-                        //         // TODO: 找到对应元素 模拟点击
-                        //         if (el.className.indexOf('swiper-slide-duplicate') !== -1) {
-                        //             console.log(self.$slots.default[0].child.$slots.default[0].data.on.click(12));
-                        //         }
-                        // },
                         // 受限于swiper的实现机制, loop模式下会克隆两边的dom节点
                         // 导致原先通过vue绑定在dom上的事件不会在克隆的dom节点上触发
                         // 只能通过找到相对应的vnode节点后, 代码调用相应事件
