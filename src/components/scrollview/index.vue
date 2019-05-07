@@ -1,6 +1,5 @@
 <template>
     <div
-        v-else
         ref="scrollView"
         :class="resClassName"
         :style="computedStyle"
