@@ -10,7 +10,9 @@
 </template>
 
 <script>
-    import {mixin} from '../../mixins';
+    import {
+        mixin
+    } from '../../mixins';
 
     const EDGE_EVENT_THRESHOLD = 200;
 
@@ -26,7 +28,10 @@
     };
 
     function scrollTo(element, animation, options = {}, duration = 300) {
-        const {scrollLeft, scrollTop} = options;
+        const {
+            scrollLeft,
+            scrollTop
+        } = options;
         const hasLeft = typeof scrollLeft === 'number';
         const hasTop = typeof scrollTop === 'number';
 
@@ -40,7 +45,8 @@
             return;
         }
 
-        let currentTime = 0, increment = 20;
+        let currentTime = 0,
+            increment = 20;
         let startLeft, changeLeft, startTop, changeTop;
 
         if (hasLeft) {
@@ -185,7 +191,9 @@
                     this.$emit('scrolltoupper', {
                         ...cloneEvent(e),
                         type: 'scrolltoupper',
-                        detail: {direction: 'top'},
+                        detail: {
+                            direction: 'top'
+                        },
                     });
                 }
 
@@ -194,7 +202,9 @@
                     this.$emit('scrolltoupper', {
                         ...cloneEvent(e),
                         type: 'scrolltoupper',
-                        detail: {direction: 'left'},
+                        detail: {
+                            direction: 'left'
+                        },
                     });
                 }
 
@@ -203,7 +213,9 @@
                     this.$emit('scrolltolower', {
                         ...cloneEvent(e),
                         type: 'scrolltolower',
-                        detail: {direction: 'bottom'},
+                        detail: {
+                            direction: 'bottom'
+                        },
                     });
                 }
 
@@ -212,7 +224,9 @@
                     this.$emit('scrolltolower', {
                         ...cloneEvent(e),
                         type: 'scrolltolower',
-                        detail: {direction: 'right'},
+                        detail: {
+                            direction: 'right'
+                        },
                     });
                 }
             },
@@ -226,8 +240,14 @@
                     return;
                 }
 
-                const {offsetLeft, offsetTop} = el;
-                this.scrollTo({scrollLeft: offsetLeft, scrollTop: offsetTop});
+                const {
+                    offsetLeft,
+                    offsetTop
+                } = el;
+                this.scrollTo({
+                    scrollLeft: offsetLeft,
+                    scrollTop: offsetTop
+                });
             },
         },
         watch: {
@@ -237,7 +257,9 @@
                     return;
                 }
 
-                this.scrollTo({scrollTop: newValue});
+                this.scrollTo({
+                    scrollTop: newValue
+                });
             },
             scrollLeft(newValue) {
                 // TODO: 单位处理
@@ -245,7 +267,9 @@
                     return;
                 }
 
-                this.scrollTo({scrollLeft: newValue});
+                this.scrollTo({
+                    scrollLeft: newValue
+                });
             },
             scrollIntoView(newValue) {
                 this.handleScrollIntoView(newValue);
