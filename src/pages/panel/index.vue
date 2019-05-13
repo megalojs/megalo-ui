@@ -44,6 +44,9 @@
         id: 'Badge',
         name: '徽标'
       }, {
+        id: 'Button',
+        name: '按钮'
+      }, {
         id: 'CountDown',
         name: '倒计时'
       }, {
@@ -53,6 +56,9 @@
         id: 'Divider',
         name: '分割线'
       }, {
+        id: 'Form',
+        name: '表单'
+      }, {
         id: 'NoticeBar',
         name: '通告栏'
       }, {
@@ -61,11 +67,14 @@
       }, {
         id: 'Timeline',
         name: '时间轴'
+      }, {
+        id: 'ScrollView',
+        name: '可滚动视图区域'
       }, 
-      // {
-      //   id: 'Swiper',
-      //   name: '滑块视图容器'
-      // }, 
+      {
+        id: 'Swiper',
+        name: '滑块视图容器'
+      },
       // {
       //   id: 'Load-More',
       //   name: '页面提示'

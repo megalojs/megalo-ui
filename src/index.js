@@ -1,9 +1,14 @@
 export { default as mgAvatar } from './components/avatar';
 export { default as mgBadge } from './components/badge';
+export { default as mgButton } from './components/button';
 export { default as mgCountdown } from './components/countdown';
 export { default as mgCurtain } from './components/curtain';
 export { default as mgDivider } from './components/divider';
+export { default as mgForm } from './components/form';
 export { default as mgNoticebar } from './components/noticebar';
+export { default as mgscrollview } from './components/scrollview';
+export { default as mgSwiper } from './components/swiper';
+export { default as mgSwiperItem } from './components/swiper-item';
 export { default as mgSteps } from './components/steps';
 export { default as mgTag } from './components/tag';
 export { default as mgTimeline } from './components/timeline';
