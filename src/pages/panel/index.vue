@@ -70,11 +70,11 @@
       }, {
         id: 'ScrollView',
         name: '可滚动视图区域'
+      }, 
+      {
+        id: 'Swiper',
+        name: '滑块视图容器'
       },
-      // {
-      //   id: 'Swiper',
-      //   name: '滑块视图容器'
-      // }, 
       // {
       //   id: 'Load-More',
       //   name: '页面提示'

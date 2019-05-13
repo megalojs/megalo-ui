@@ -14,6 +14,7 @@ const pages = [
   'pages/view/tag/index',
   'pages/view/timeline/index',
   'pages/view/scrollview/index',
+  'pages/view/swiper/index',
   'pages/view/steps/index'
 ]
 

@@ -1,9 +1,9 @@
 <template>
   <div
-      ref="scrollView"
-      :class="resClassName"
-      :style="computedStyle"
-      @scroll="handleScroll"
+    ref="scrollView"
+    :class="resClassName"
+    :style="computedStyle"
+    @scroll="handleScroll"
   >
     <slot></slot>
   </div>
