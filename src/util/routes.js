@@ -5,12 +5,16 @@ const pages = [
   'pages/panel/index',
   'pages/view/avatar/index',
   'pages/view/badge/index',
+  'pages/view/button/index',
   'pages/view/countdown/index',
   'pages/view/curtain/index',
   'pages/view/divider/index',
+  'pages/view/form/index',
   'pages/view/noticebar/index',
   'pages/view/tag/index',
   'pages/view/timeline/index',
+  'pages/view/scrollview/index',
+  'pages/view/swiper/index',
   'pages/view/steps/index'
 ]
 
